@@ -10,7 +10,7 @@ namespace BankSystem.DA
         /// This function used to save the customers data to a jason named Customers located at the default directory by serializing the data
         /// </summary>
         /// <param name="customers">customers data list </param>
-        public static void SaveCustomers(List<Customer> customers)
+        public static void saveCustomers(List<Customer> customers)
         {
             #region validation
             if (customers == null) { return; }
@@ -33,7 +33,7 @@ namespace BankSystem.DA
         /// This function used to save the accounts data to a jason "Accounts" located at the default directory  by serializing the data
         /// </summary>
         /// <param name="accounts">accounts data list </param>
-        public static void SaveAccounts(List<Account> accounts)
+        public static void saveAccounts(List<Account> accounts)
         {
 
             #region validation

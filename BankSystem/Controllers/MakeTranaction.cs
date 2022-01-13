@@ -7,41 +7,65 @@ using System.Threading.Tasks;
 
 namespace BankSystem.Controllers
 {
+
+
     public class  MakeTransaction
     {
-
-        public static void withdraw(Account account, double amount)
+        /// <summary>
+        /// This Function is used to make a withdraw transaction for a specific account with a targeted amount
+        /// </summary>
+        /// <param name="account">the Targeted account</param>
+        /// <param name="amount">The Targeted amount(number)</param>
+        /// <returns>
+        /// 1 ON Success 
+        /// 0 on failure of type wrong input
+        /// -1 on failure of type can't fund the required amount
+        /// </returns>
+        public static int withdraw(Account account, double amount)
         {
-            //validatition 
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount of withdrawal must be positive");
+
+            #region validation
+            if (amount != null && amount <= 0)
+                return 0;
 
 
             if (account.accountBalance - amount < 0)
-                throw new InvalidOperationException("Not sufficient funds for this withdrawal");
+                return -1;
+            #endregion
 
-            //create transation
+            #region Create Transaction
             Transaction _withdraw = new Transaction(-amount, DateTime.Now);
             account.transactionslist.Add(_withdraw);
             account.accountBalance += -amount;
-            Console.WriteLine($"Successfully withdraw {-_withdraw.trasnationAmount} Nis, and your new balance become {account.accountBalance} Nis");
+            //Console.WriteLine($"Successfully withdraw {-_withdraw.trasnationAmount} Nis, and your new balance become {account.accountBalance} Nis");
+            return 1;
+
+            #endregion
 
         }
 
-        public static void deposit(Account account, double amount)
+        /// <summary>
+        /// This Function is used to make a deposite transaction for a specific account with a targeted amount
+        /// </summary>
+        /// <param name="account">the Targeted account</param>
+        /// <param name="amount">The Targeted amount</param>
+        /// <returns>
+        /// 1 ON Success 
+        /// 0 on failure of type wrong input
+        /// </returns>
+        public static int deposit(Account account, double amount)
         {
+            #region validation
+            if (amount != null && amount <= 0)
+                return 0;
+            #endregion
 
-            //validatition 
-            if (amount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount of desposte must be positive");
-
-
-            //create transation
+            #region Create Transation
             Transaction deposite = new Transaction(amount, DateTime.Now);
             account.transactionslist.Add(deposite);
             account.accountBalance += amount;
-            Console.WriteLine($"Successfully deposited {deposite.trasnationAmount} Nis, and your new balance become {account.accountBalance} Nis");
-
+            return 1;
+            #endregion
 
         }
     }

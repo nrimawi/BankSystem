@@ -13,6 +13,7 @@ namespace BankSystem.Models
         public int customerAge { get; set; }
 
         public List<Guid> accountList;
+       
         #endregion
 
 

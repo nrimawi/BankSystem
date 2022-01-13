@@ -12,22 +12,25 @@ namespace BankSystem.Models
         public string userPassword { get; set; }
         public string userEmail { get; set; }
         public int userAge { get; set; }
-
+        public int salary { get; set; }
         public int roleID;
+
+        public User(bool active, Guid userId, string userName, string userPassword, string userEmail, int userAge, int salary, int roleID)
+        {
+            this.active = active;
+            this.userId = userId;
+            this.userName = userName;
+            this.userPassword = userPassword;
+            this.userEmail = userEmail;
+            this.userAge = userAge;
+            this.salary = salary;
+            this.roleID = roleID;
+        }
         #endregion
 
         #region constructor
-        public User(string name, string email, int age, int role, string pass)
-        {
-            this.userId = Guid.NewGuid();
-            this.userAge = age;
-            this.userEmail = email;
-            this.userName = name;
-            this.active = true;
-            this.roleID = role;
-            this.userPassword = pass;
 
-        }
+
         #endregion
 
     }
