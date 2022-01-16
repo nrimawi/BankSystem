@@ -20,8 +20,8 @@ public class program
     #endregion
 
     #region Global login variables 
-    public static Role LOGGED_IN_ROLE;
-    public static User LOGGED_IN_USER;
+    public static Role LOGGED_IN_ROLE=new();
+    public static User LOGGED_IN_USER=new ();
     #endregion
 
     public static void Main(string[] args)
@@ -559,6 +559,9 @@ public class program
 
     }
 
+    /// <summary>
+    /// /This function is used to update customer records
+    /// </summary>
     public static void updateCustomer()
     {
 
@@ -633,6 +636,10 @@ public class program
         updateCustomerMenuSelection(ref customer);
     }
 
+    /// <summary>
+    /// This function used to show update menu and the id of the customer we want to update 
+    /// </summary>
+    /// <param name="customer">the custmer object we want to make updates on</param>
     public static void updateCustomerMenu(Customer customer)
     {
         Console.Clear();
@@ -647,6 +654,10 @@ public class program
 
     }
 
+    /// <summary>
+    /// THI
+    /// </summary>
+    /// <param name="customer"></param>
     public static void updateCustomerMenuSelection(ref Customer customer)
     {
 
@@ -710,7 +721,9 @@ public class program
         catch (Exception ex) { Console.WriteLine(ex.Message); }
         #endregion
     }
-
+    /// <summary>
+    /// This function is used for delete(Disactive an account)
+    /// </summary>
     public static void deleteAccount()
     {
 
@@ -779,6 +792,7 @@ public class program
     
     public static void updateAccount()
     {
+
 
 
     }

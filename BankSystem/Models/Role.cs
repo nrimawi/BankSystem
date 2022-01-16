@@ -22,6 +22,10 @@ namespace BankSystem.Models
             this.RoleId = id++;
 
         }
+
+        public Role()
+        {
+        }
         #endregion
 
     }

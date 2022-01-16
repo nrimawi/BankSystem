@@ -42,6 +42,7 @@ namespace BankSystem.Controllers
             
             #region search
             var account = accounts.Where((account) => account.accountIBAN == IBAN).FirstOrDefault();
+            if (account == null) return  null ;
             return account;
             #endregion
 

@@ -54,8 +54,7 @@ namespace BankSystem.Controllers
         public static Customer CreateCustomer(string name, string email, int age)
         {
             #region data validation
-            if (name == null || email == null || age == null)
-                throw new ArgumentNullException();
+          
             #endregion
 
             #region createCustomer

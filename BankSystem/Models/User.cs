@@ -26,6 +26,10 @@ namespace BankSystem.Models
             this.salary = salary;
             this.roleID = roleID;
         }
+
+        public User()
+        {
+        }
         #endregion
 
         #region constructor
