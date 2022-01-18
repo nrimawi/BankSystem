@@ -12,20 +12,18 @@ namespace BankSystem.Models
         public string customerEmail { get; set; }
         public int customerAge { get; set; }
 
-        public List<Guid> accountList;
        
         #endregion
 
 
         #region constructor
-        public Customer(bool active, Guid customerId, string customerName, string customerEmail, int customerAge, List<Guid> accountList)
+        public Customer(bool active, Guid customerId, string customerName, string customerEmail, int customerAge)
         {
             this.active = active;
             this.customerId = customerId;
             this.customerName = customerName;
             this.customerEmail = customerEmail;
             this.customerAge = customerAge;
-            this.accountList = accountList;
         }
 
         #endregion

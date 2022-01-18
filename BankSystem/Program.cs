@@ -36,20 +36,9 @@ public class program
         users.Add(Teller1);
         #endregion
 
-       
-        DataBaseConnection dataBaseConnection= DataBaseConnection.Instance;
-        var connection = dataBaseConnection.connection;
-        connection.Open();  
-        using var cmd = new MySqlCommand();
-        cmd.Connection = connection;
-        string GUID=Guid.NewGuid().ToString();
-        Console.WriteLine(GUID.Length);
 
-        cmd.CommandText = $"INSERT INTO test VALUES(2,44)";
-
-        cmd.Parameters.AddWithValue("@GUID", GUID);
-        cmd.ExecuteNonQuery();
-        Console.WriteLine($"MySQL version : {connection.ServerVersion}");
+        DataAccess.saveCustomer(new Customer(true, Guid.NewGuid(), "Nazeeh", "nazeeh_r@yahoo.com", 23));
+        DataAccess.saveAccount(new Account(Guid.NewGuid(), "Salary", 100, true));
 
         //login();
         //BacktoMenu();
@@ -257,7 +246,7 @@ public class program
             Account account = AdminTransaction.CreateBankAccount(type, customer.customerId);
 
             accounts.Add(account);
-            customer.accountList.Add(account.accountIBAN);
+          //  customer.accountList.Add(account.accountIBAN);
             Console.WriteLine("\r\n");
 
             Console.WriteLine("Account has been created sucessfully!");
@@ -295,7 +284,7 @@ public class program
         {
             string active = account.active ? "active" : "disactive";
 
-            Customer customer = Search.getCustomer(customers, account.accountOwnerId);
+            Customer customer = Search.getCustomer(customers, Guid.NewGuid());
 
             if (customer != null)
             {
@@ -478,8 +467,8 @@ public class program
     {
         try
         {
-            customers = DataBaseConnections.getAllCustomers();
-            accounts = DataBaseConnections.getAllAccounts();
+          //  customers = DataBaseConnections.getAllCustomers();
+           // accounts = DataBaseConnections.getAllAccounts();
         }
         catch (Exception ex)
         {
@@ -543,8 +532,8 @@ public class program
     /// </summary>
     public static void Logout()
     {
-        DataBaseConnections.saveAccounts(accounts);
-        DataBaseConnections.saveCustomers(customers);
+       // DataBaseConnections.saveAccounts(accounts);
+      //  DataBaseConnections.saveCustomers(customers);
 
 
         LOGGED_IN_USER = null;

@@ -35,7 +35,7 @@ namespace BankSystem.Controllers
 
             #region Create Transaction
             Transaction _withdraw = new Transaction(-amount, DateTime.Now);
-            account.transactionslist.Add(_withdraw);
+           // account.transactionslist.Add(_withdraw);
             account.accountBalance += -amount;
             //Console.WriteLine($"Successfully withdraw {-_withdraw.trasnationAmount} Nis, and your new balance become {account.accountBalance} Nis");
             return 1;
@@ -62,7 +62,7 @@ namespace BankSystem.Controllers
 
             #region Create Transation
             Transaction deposite = new Transaction(amount, DateTime.Now);
-            account.transactionslist.Add(deposite);
+           // account.transactionslist.Add(deposite);
             account.accountBalance += amount;
             return 1;
             #endregion

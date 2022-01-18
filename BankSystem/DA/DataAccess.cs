@@ -1,38 +1,68 @@
 ﻿using BankSystem.Models;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
 namespace BankSystem.DA
 {
-    public class DataBaseConnections
+    public class DataAccess
     {
 
-        /// <summary>
-        /// This function used to save the customers data to a jason named Customers located at the default directory by serializing the data
-        /// </summary>
-        /// <param name="customers">customers data list </param>
-        public static void saveCustomers(List<Customer> customers)
+
+
+        
+        public static void saveCustomer(Customer customer)
         {
             #region validation
-            if (customers == null) { return; }
+            if (customer == null) { return; }
             #endregion
 
-            #region saveToFile
-            try
-            {
-                File.WriteAllText(@"Customers.json", JsonConvert.SerializeObject(customers));
-            }
+            #region get database connection and validation
+            DataBaseConnection  dataBaseConnection= DataBaseConnection.Instance;
+            var connection = dataBaseConnection.connection;
+            try { connection.Open(); }
+            catch (MySqlException ex) { throw ex; }
+            #endregion
 
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            #region execute query
+            using var query = new MySqlCommand();
+            query.Connection = connection;
+            string GUID = Guid.NewGuid().ToString();
+            Console.WriteLine(GUID.Length);
+            Console.WriteLine(customer.customerId);
+            query.CommandText = $"INSERT INTO customer VALUES(@customerID,@customerName,@customerEmail,@customerAge,1)";
+             query.Parameters.AddWithValue("@customerID", customer.customerId.ToString());
+            query.Parameters.AddWithValue("@customerName", customer.customerName);
+            query.Parameters.AddWithValue("@customerEmail", customer.customerEmail);
+            query.Parameters.AddWithValue("@customerAge", customer.customerAge);
+            query.ExecuteNonQuery();
             #endregion
         }
 
-        /// <summary>
-        /// This function used to save the accounts data to a jason "Accounts" located at the default directory  by serializing the data
-        /// </summary>
-        /// <param name="accounts">accounts data list </param>
+        public static void saveAccount(Account account)
+        {
+            #region validation
+            if (account == null) { return; }
+            #endregion
+
+            #region get database connection and validation
+            DataBaseConnection dataBaseConnection = DataBaseConnection.Instance;
+            var connection = dataBaseConnection.connection;
+            try { connection.Open(); }
+            catch (MySqlException ex) { throw ex; }
+            #endregion
+
+
+            using var query = new MySqlCommand();
+            query.Connection = connection;
+            string GUID = Guid.NewGuid().ToString();
+            query.CommandText = $"INSERT INTO customer VALUES(@accountIBAN,@accountType,@accountBalance,1)";
+            query.Parameters.AddWithValue("@accountIBAN", account.accountIBAN.ToString());
+            query.Parameters.AddWithValue("@accountType", account.accountType);
+            query.Parameters.AddWithValue("@accountBalance", account.accountBalance);
+            query.ExecuteNonQuery();
+
+        }
+     
         public static void saveAccounts(List<Account> accounts)
         {
 
