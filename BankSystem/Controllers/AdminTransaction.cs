@@ -28,7 +28,7 @@ namespace BankSystem.Controllers
             #region create Account
             try
             {
-                Account account = new Account(Guid.NewGuid(), type, 0, true);
+                Account account = new Account(Guid.NewGuid(), type, 0);
 
                 return account;
             }
@@ -60,7 +60,7 @@ namespace BankSystem.Controllers
             #region createCustomer
             try
             {
-                Customer customer = new Customer(true, Guid.NewGuid(), name, email, age);
+                Customer customer = new Customer(Guid.NewGuid(), name, email, age);
 
                 return customer;
             }

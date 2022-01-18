@@ -15,7 +15,7 @@ namespace BankSystem.Models
 
         #region constructor
 
-        public Account(Guid accountIBAN, string accountType, double accountBalance, bool active)
+        public Account(Guid accountIBAN, string accountType, double accountBalance)
         {
             this.active = active;
             this.accountIBAN = accountIBAN;

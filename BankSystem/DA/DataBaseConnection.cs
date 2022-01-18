@@ -21,11 +21,11 @@ namespace BankSystem.DA
             {
                 string cs = @"server=localhost;userid=root;password=root;database=banksystem";
                 using var con = new MySqlConnection(cs);
-                con.Open();
                 this.connection = con;
+
             }
             catch (MySqlException ex) { throw ex; }
-
+            openConnection();   
         }
         public static DataBaseConnection Instance
         {
@@ -43,6 +43,15 @@ namespace BankSystem.DA
                 }
                 return instance;
             }
+        }
+
+        private void openConnection()
+        {
+            try
+            {
+                this.connection.Open();
+            }
+            catch (Exception ex) { throw ex; }
         }
 
 

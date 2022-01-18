@@ -30,15 +30,15 @@ public class program
         #region Create a system admin and system teller
         roles.Add(ADMIN);
         roles.Add(TELLER);
-        User Admin1 = new User(true, Guid.NewGuid(), "nazeeh", "12345", "nazeeh_r@yahoo.com", 30, 3000, ADMIN.roleId);
-        User Teller1 = new User(true, Guid.NewGuid(), "sara", "12345", "nazeeh_r@yahoo.com", 30, 3000, TELLER.roleId);
+        User Admin1 = new User( Guid.NewGuid(), "nazeeh", "12345", "nazeeh_r@yahoo.com", 30, 3000, ADMIN.roleId);
+        User Teller1 = new User( Guid.NewGuid(), "sara", "12345", "nazeeh_r@yahoo.com", 30, 3000, TELLER.roleId);
         users.Add(Admin1);
         users.Add(Teller1);
         #endregion
 
 
-        DataAccess.saveCustomer(new Customer(true, Guid.NewGuid(), "Nazeeh", "nazeeh_r@yahoo.com", 23));
-        DataAccess.saveAccount(new Account(Guid.NewGuid(), "Salary", 100, true));
+        DataAccess.saveCustomer(new Customer(Guid.NewGuid(), "Nazeeh", "nazeeh_r@yahoo.com", 23));
+        DataAccess.saveAccount(new Account(Guid.NewGuid(), "Salary", 100));
 
         //login();
         //BacktoMenu();

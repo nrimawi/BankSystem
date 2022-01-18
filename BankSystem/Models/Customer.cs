@@ -17,9 +17,8 @@ namespace BankSystem.Models
 
 
         #region constructor
-        public Customer(bool active, Guid customerId, string customerName, string customerEmail, int customerAge)
+        public Customer( Guid customerId, string customerName, string customerEmail, int customerAge)
         {
-            this.active = active;
             this.customerId = customerId;
             this.customerName = customerName;
             this.customerEmail = customerEmail;

@@ -15,9 +15,8 @@ namespace BankSystem.Models
         public int salary { get; set; }
         public int roleID;
 
-        public User(bool active, Guid userId, string userName, string userPassword, string userEmail, int userAge, int salary, int roleID)
+        public User(Guid userId, string userName, string userPassword, string userEmail, int userAge, int salary, int roleID)
         {
-            this.active = active;
             this.userId = userId;
             this.userName = userName;
             this.userPassword = userPassword;

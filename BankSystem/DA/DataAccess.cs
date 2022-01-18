@@ -19,8 +19,7 @@ namespace BankSystem.DA
             #region get database connection and validation
             DataBaseConnection  dataBaseConnection= DataBaseConnection.Instance;
             var connection = dataBaseConnection.connection;
-            try { connection.Open(); }
-            catch (MySqlException ex) { throw ex; }
+           
             #endregion
 
             #region execute query
@@ -47,15 +46,14 @@ namespace BankSystem.DA
             #region get database connection and validation
             DataBaseConnection dataBaseConnection = DataBaseConnection.Instance;
             var connection = dataBaseConnection.connection;
-            try { connection.Open(); }
-            catch (MySqlException ex) { throw ex; }
+          
             #endregion
 
 
             using var query = new MySqlCommand();
             query.Connection = connection;
             string GUID = Guid.NewGuid().ToString();
-            query.CommandText = $"INSERT INTO customer VALUES(@accountIBAN,@accountType,@accountBalance,1)";
+            query.CommandText = $"INSERT INTO account VALUES(@accountIBAN,@accountType,@accountBalance,1)";
             query.Parameters.AddWithValue("@accountIBAN", account.accountIBAN.ToString());
             query.Parameters.AddWithValue("@accountType", account.accountType);
             query.Parameters.AddWithValue("@accountBalance", account.accountBalance);
