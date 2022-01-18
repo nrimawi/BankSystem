@@ -6,7 +6,7 @@ namespace BankSystem.Models
         #region feilds
 
         public bool active { get; set; }
-
+        public Guid trasnactionID { get; set; }
         public DateTime transactionDate { get; set; }
         public double trasnationAmount { get; set; }
 

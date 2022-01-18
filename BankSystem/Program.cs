@@ -3,7 +3,7 @@ using BankSystem.Controllers;
 using System.Text.RegularExpressions;
 using System.Text.Json;
 using BankSystem.DA;
-using System.Diagnostics;
+using MySql.Data.MySqlClient;
 
 public class program
 {
@@ -30,14 +30,29 @@ public class program
         #region Create a system admin and system teller
         roles.Add(ADMIN);
         roles.Add(TELLER);
-        User Admin1 = new User(true, Guid.NewGuid(), "nazeeh", "12345", "nazeeh_r@yahoo.com", 30, 3000, ADMIN.RoleId);
-        User Teller1 = new User(true, Guid.NewGuid(), "sara", "12345", "nazeeh_r@yahoo.com", 30, 3000, TELLER.RoleId);
+        User Admin1 = new User(true, Guid.NewGuid(), "nazeeh", "12345", "nazeeh_r@yahoo.com", 30, 3000, ADMIN.roleId);
+        User Teller1 = new User(true, Guid.NewGuid(), "sara", "12345", "nazeeh_r@yahoo.com", 30, 3000, TELLER.roleId);
         users.Add(Admin1);
         users.Add(Teller1);
         #endregion
 
-        login();
-        BacktoMenu();
+       
+        DataBaseConnection dataBaseConnection= DataBaseConnection.Instance;
+        var connection = dataBaseConnection.connection;
+        connection.Open();  
+        using var cmd = new MySqlCommand();
+        cmd.Connection = connection;
+        string GUID=Guid.NewGuid().ToString();
+        Console.WriteLine(GUID.Length);
+
+        cmd.CommandText = $"INSERT INTO test VALUES(2,44)";
+
+        cmd.Parameters.AddWithValue("@GUID", GUID);
+        cmd.ExecuteNonQuery();
+        Console.WriteLine($"MySQL version : {connection.ServerVersion}");
+
+        //login();
+        //BacktoMenu();
 
     }
 
@@ -48,7 +63,7 @@ public class program
     {
         #region Menu
         Console.Write("*********** Teller Portal ***********");
-        Console.WriteLine("     USER: {0}\r\n", LOGGED_IN_ROLE.RoleName);
+        Console.WriteLine("     USER: {0}\r\n", LOGGED_IN_ROLE.roleName);
 
         Console.WriteLine("1-Make a deposite to a customer account");
         Console.WriteLine("2-Make a withdraw to a customer account");
@@ -496,7 +511,7 @@ public class program
                         LOGGED_IN_ROLE = Search.getLoggedInUserRole(roles, LOGGED_IN_USER.roleID);
                         if (LOGGED_IN_ROLE != null)
                         {
-                            Console.WriteLine($"WELCOME {LOGGED_IN_USER.userName} TO THE {LOGGED_IN_ROLE.RoleName} PORTAL");
+                            Console.WriteLine($"WELCOME {LOGGED_IN_USER.userName} TO THE {LOGGED_IN_ROLE.roleName} PORTAL");
                             initialization();
                             Console.WriteLine();
                             return;
@@ -545,7 +560,7 @@ public class program
     public static void BacktoMenu()
     {
         Console.Clear();
-        if (LOGGED_IN_ROLE.RoleName == "Admin")
+        if (LOGGED_IN_ROLE.roleName == "Admin")
         {
             AdminMainMenu();
             AdminSelectChoice();

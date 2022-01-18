@@ -5,8 +5,8 @@ namespace BankSystem.Models
     public class Role
     {
         #region fields
-        public int RoleId { get; }
-        public string RoleName { get; set; }
+        public int roleId { get; }
+        public string roleName { get; set; }
 
         public bool active;
 
@@ -18,8 +18,8 @@ namespace BankSystem.Models
         public Role(string name)
         {
             this.active = true;
-            this.RoleName = name;
-            this.RoleId = id++;
+            this.roleName = name;
+            this.roleId = id++;
 
         }
 

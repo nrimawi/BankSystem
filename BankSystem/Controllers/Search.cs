@@ -22,7 +22,7 @@ namespace BankSystem.Controllers
             #endregion
 
             #region search
-            var role = roles.Where((role) => role.RoleId == roleId).FirstOrDefault();
+            var role = roles.Where((role) => role.roleId == roleId).FirstOrDefault();
             return role;
             #endregion 
         }
