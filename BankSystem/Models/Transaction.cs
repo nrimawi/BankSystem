@@ -14,13 +14,15 @@ namespace BankSystem.Models
 
         #region constructors
         public Transaction() { }
-        public Transaction(double ammount,DateTime date)
-        {
-            this.transactionDate = date;
-            this.trasnationAmount = ammount;
-            this.active = true;
 
+        public Transaction(Guid trasnactionID, DateTime transactionDate, double trasnationAmount)
+        {
+            this.trasnactionID = trasnactionID;
+            this.transactionDate = transactionDate;
+            this.trasnationAmount = trasnationAmount;
         }
+
+
         #endregion
     }
 }
